@@ -1,4 +1,36 @@
-h1 {
-
-	color:blue;
+@font-face{
+	font-family: Troika;
+	src: url("../fonts/Troika/troika.otf");
 }
+
+#main {
+
+	border-style: solid;
+	border-color: #cc5200;
+	height:700px;
+	position:relative;
+	top:120px;
+	border-radius: 25px;
+	background-image: url("../images/chrome2.jpg");
+    }
+
+body {
+
+	background-image: url("../images/final.jpg");
+}
+
+h1{
+	font-style:italic;
+	font-family: Troika;
+	font-size: 50px;
+	font-weight: bold;
+	color:#cc5200;
+	background-color: black;
+	
+}
+#panel{
+	background-color: black;
+	border-color: black;
+	text-align: center;
+}
+
