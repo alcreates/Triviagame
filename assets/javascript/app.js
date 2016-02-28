@@ -1,45 +1,39 @@
 var triviaGame = {
-
-	newGame : {
-			 wins: 0,
-			 loses: 0,
-			 currentQuestion:[]
-
+	newGame: function () {
+			right = 0
+			wrong = 0
+			this.startButton();
 
 	},
-	questionOne: {
 
-			question: "What is the closest planet to the sun? ",
-			reply1 : "The moon",
-			reply2 : "Mars ",
-			reply3 : "Jupiter",
-			reply4 : "Mercury",
-			answer : "Mercury"
+	slides : [[],[],[],[] ]
+	,
+
+	display: function(){
+
+		$("#main").append("<div id='display'></div>");
+
+	},
+
+	startButton: function() {
+
+		$("#button").click(function(){
+
+			$('#button').remove();
+			triviaGame.display();
+
+		});
+
+
 	}
+	
 
 
 
 
+};
 
+$(document).ready(function(){
+	triviaGame.newGame()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+});

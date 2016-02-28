@@ -1,7 +1,4 @@
-@font-face{
-	font-family: Troika;
-	src: url("../fonts/Troika/troika.otf");
-}
+
 
 #main {
 
@@ -26,11 +23,44 @@ h1{
 	font-weight: bold;
 	color:#cc5200;
 	background-color: black;
+	margin-bottom:  50px;
+
 	
 }
 #panel{
-	background-color: black;
+	background-color: #ccc;
 	border-color: black;
 	text-align: center;
+	border-radius: 25px;
+
+}
+
+#button {
+	
+	position: relative;
+	top:150px;
+	display: block;
+	margin:auto;
+	font-family: Troika;
+	color:#cc5200;
+	width:150px;
+	height:75px;
+	font-size: 40px;
+	background-color: #ccc;
+
+
+}
+#button p {
+	position:relative;
+	
+}
+
+#display {
+	display: block;
+	margin:auto;
+	background-color: #ccc;
+	width:620px;
+	height:500px;
+	border-radius: 25px;
 }
 
