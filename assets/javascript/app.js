@@ -1,7 +1,7 @@
 var right = 0;
 var wrong = 0 ;
 var slideNumber = 0; 
-
+var secondsLeft = 20;
 
 
 
@@ -26,7 +26,7 @@ var triviaGame = {
 
 	display: function(){
 
-		$("#main").append("<div id='display'></div>");
+		$("#main").append("<div id='display'><span></span></div>");
 
 	},
 
@@ -45,7 +45,9 @@ var triviaGame = {
 	},
 	
 	displayQuestion: function(){
-
+			setInterval(this.timer , 1000);
+	
+		
 		for (var i = 0; i < triviaGame.slides[slideNumber].length; i++) {
 			 answer = triviaGame.slides[slideNumber][5]
 			  
@@ -60,9 +62,11 @@ var triviaGame = {
 									 		
 			 		if ($(this).text() == answer){
 			 			alert("you win!")
+			 			triviaGame.nextQuestion();
 			 		}
 			 		else{
 			 			alert("you lose")
+			 			triviaGame.nextQuestion();
 			 		}
 
 			 		
@@ -79,12 +83,27 @@ var triviaGame = {
 
 		
 	
-	
 	},
 	nextQuestion: function(){
-
+		
+		$("#display").empty()
 		slideNumber += 1
-		displayQuestion()
+		secondsLeft = 20
+		this.displayQuestion()
+		
+
+	},
+	timer: function(){
+		if (secondsLeft> 0){
+			$('span').html(secondsLeft);
+			secondsLeft -= 1
+
+		}else {
+			alert("time out")
+			triviaGame.nextQuestion
+		}
+
+		
 
 	}
 
