@@ -64,3 +64,12 @@ h1{
 	border-radius: 25px;
 }
 
+.choices {
+	 
+	 border-style: solid;
+	 border-color: blue;
+	 width:75px;
+	 height: 20px;
+
+}
+

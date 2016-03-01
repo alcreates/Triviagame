@@ -1,5 +1,18 @@
+var right = 0;
+var wrong = 0 ;
+var slideNumber = 0; 
+
+
+
+
+
+
+
+
+
 var triviaGame = {
 	newGame: function () {
+			slideNumber = 0 
 			right = 0
 			wrong = 0
 			this.startButton();
@@ -7,6 +20,8 @@ var triviaGame = {
 	},
 
 	slides : [["What's the closest planet to the sun?","earth", "moon", "jupiter","mercury", "mercury"],["What's your name?", "alvaro", "doug", "charlie", "sean", "alvaro"],["what's your favorit animal?", "cats","dogs", "birds", "fish","dogs"],["What's your favorite game", "tetris","Uno","checkers","poker","checkers"] ]
+	,
+	currentChoices: []
 	,
 
 	display: function(){
@@ -21,53 +36,57 @@ var triviaGame = {
 
 			$('#button').remove();
 			triviaGame.display();
-			triviaGame.slideLoop();
+			triviaGame.displayQuestion();
+			
+		
 		});
 
 
 	},
-	slideLoop : function(){
-		// iterates through slides
-		for (var i = 0; i < triviaGame.slides.length; i++) {
+	
+	displayQuestion: function(){
 
-			//iterates through contnent in each slide and displays and attaches listners 
-			for (var a = 0; a < triviaGame.slides[i].length; a++) {
-				//timer
+		for (var i = 0; i < triviaGame.slides[slideNumber].length; i++) {
+			 answer = triviaGame.slides[slideNumber][5]
+			  
+			 
+			 if (i == 0){
+			 	$("#display").append("<div id='question'>" + triviaGame.slides[slideNumber][i] + "</div>")
+			 }
+			 else if( i > 0 && i < 5){
 
-				answer = triviaGame.slides[i][5]
-				currentItem = triviaGame.slides[i][a]
-				if(a == 0){
-					$("#display").append("<div id='question'>" + currentItem + "</div>");
-					
-				}
-				else if( a > 0 && a < 5){
-					$("#display").append("<div class='choices' id='choices" +[a] + "'>" + currentItem + "</div>");
-					$(".choices").click(function(){
-							if  ($(this)[0].id == answer){
-								alert("winner!")
+			 	$("#display").append("<div class='choices' id='choice" + [i] +"'>" + triviaGame.slides[slideNumber][i]+ "</div>");
+			 	$("#choice" + [i]).click(function(){
+									 		
+			 		if ($(this).text() == answer){
+			 			alert("you win!")
+			 		}
+			 		else{
+			 			alert("you lose")
+			 		}
 
-							}else{
-								alert('loser!')
-							}
+			 		
+			 	});
+			 	$("#choice" + [i]).hover(function(){
 
+			 		$(this).fadeOut(100);
+			 		$(this).fadeIn(500);
+			 	});
 
-					});	
-
-				}
-			
-
-
-
-			}
+			 }
 		
+		}	
 
-		}
+		
+	
+	
+	},
+	nextQuestion: function(){
 
-
+		slideNumber += 1
+		displayQuestion()
 
 	}
-	
-
 
 
 
@@ -77,3 +96,5 @@ $(document).ready(function(){
 	triviaGame.newGame()
 
 });
+		
+	
