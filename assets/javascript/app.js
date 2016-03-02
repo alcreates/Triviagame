@@ -27,7 +27,7 @@ var triviaGame = {
 	display: function(){
 
 		$("#main").append("<div id='timer'></div>");
-		$("#main").append("<div id='display'></div>");
+		$("#main").append("<div class='panel panel-default' id='displayPanel'><div class='panel-body' ></div></div>");
 		setInterval(this.timer , 1000);
 
 		
@@ -57,11 +57,11 @@ var triviaGame = {
 			  
 			 
 			 if (i == 0){
-			 	$("#display").append("<div id='question'>" + triviaGame.slides[slideNumber][i] + "</div>")
+			 	$("#displayPanel").append("<div id='question'>" + triviaGame.slides[slideNumber][i] + "</div>")
 			 }
 			 else if( i > 0 && i < 5){
 
-			 	$("#display").append("<div class='choices' id='choice" + [i] +"'>" + triviaGame.slides[slideNumber][i]+ "</div>");
+			 	$("#displayPanel").append("<div class='choices' id='choice" + [i] +"'>" + triviaGame.slides[slideNumber][i]+ "</div>");
 			 	$("#choice" + [i]).click(function(){
 									 		
 			 		if ($(this).text() == answer){
@@ -92,7 +92,7 @@ var triviaGame = {
 	nextQuestion: function(){
 
 		$("#timer").empty()
-		$("#display").empty()
+		$("#displayPanel").empty()
 		slideNumber += 1
 		secondsLeft = 20
 		this.displayQuestion()

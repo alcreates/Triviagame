@@ -10,6 +10,7 @@
 	border-radius: 25px;
 	background-image: url("../images/chrome2.jpg");
     margin:auto;
+    overflow: auto;
     }
 
 
@@ -58,18 +59,7 @@ h1{
 	
 }
 
-#display {
-	position:relative;
-	display: block;
-	margin:auto;
-	background-color: #ccc;
-	width:500px;
-	height:200px;
-	border-radius: 25px;
-	border-style: solid;
-	border-color: #cc5200;
-	overflow: auto;
-}
+
 
 .choices {
 	 margin:auto;
@@ -101,5 +91,15 @@ h1{
 #question{
 	font-size: 25px;
 	text-align: center;
+}
+#displayPanel{
+	background-color: #ccc;
+	
+	height:250px;
+	border-radius: 25px;
+	border-style: solid;
+	border-color: #cc5200;
+	overflow: auto;
+
 }
 
