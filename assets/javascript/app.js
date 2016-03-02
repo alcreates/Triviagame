@@ -26,8 +26,11 @@ var triviaGame = {
 
 	display: function(){
 
-		$("#main").append("<div id='display'><span></span></div>");
+		$("#main").append("<div id='timer'></div>");
+		$("#main").append("<div id='display'></div>");
+		setInterval(this.timer , 1000);
 
+		
 	},
 
 	startButton: function() {
@@ -38,6 +41,8 @@ var triviaGame = {
 			triviaGame.display();
 			triviaGame.displayQuestion();
 			
+
+	
 		
 		});
 
@@ -45,8 +50,7 @@ var triviaGame = {
 	},
 	
 	displayQuestion: function(){
-			setInterval(this.timer , 1000);
-	
+			
 		
 		for (var i = 0; i < triviaGame.slides[slideNumber].length; i++) {
 			 answer = triviaGame.slides[slideNumber][5]
@@ -79,23 +83,30 @@ var triviaGame = {
 
 			 }
 		
+			
 		}	
 
 		
 	
 	},
 	nextQuestion: function(){
-		
+
+		$("#timer").empty()
 		$("#display").empty()
 		slideNumber += 1
 		secondsLeft = 20
 		this.displayQuestion()
 		
+	
+		
+		
 
 	},
 	timer: function(){
+		
+	
 		if (secondsLeft> 0){
-			$('span').html(secondsLeft);
+			$('#timer').html(secondsLeft);
 			secondsLeft -= 1
 
 		}else {
