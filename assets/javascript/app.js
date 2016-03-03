@@ -2,7 +2,9 @@ var right = 0;
 var wrong = 0 ;
 var slideNumber = 0; 
 var secondsLeft = 0;
-
+var timer = $.timer(function(){
+	triviaGame.timerCount();
+});
 
 
 
@@ -30,7 +32,7 @@ var triviaGame = {
 
 		$("#main").append("<div id='timer'></div>");
 		$("#main").append("<div class='panel panel-default' id='displayPanel'><div class='panel-body' ></div></div>");
-		setInterval(this.timer , 1000);
+		timer.set({time: 1000, autostart: true})
 
 		
 	},
@@ -138,7 +140,7 @@ var triviaGame = {
 		
 
 	},
-	timer: function(){
+	timerCount: function(){
 		
 	
 		if (secondsLeft> 0){
@@ -153,6 +155,7 @@ var triviaGame = {
 		
 
 	}
+
 
 
 
