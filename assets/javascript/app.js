@@ -1,7 +1,7 @@
 var right = 0;
 var wrong = 0 ;
 var slideNumber = 0; 
-var secondsLeft = 20;
+var secondsLeft = 0;
 
 
 
@@ -15,6 +15,7 @@ var triviaGame = {
 			slideNumber = 0 
 			right = 0
 			wrong = 0
+			secondsLeft = 20
 			this.startButton();
 
 	},
@@ -65,11 +66,15 @@ var triviaGame = {
 			 	$("#choice" + [i]).click(function(){
 									 		
 			 		if ($(this).text() == answer){
-			 			alert("you win!")
+			 			
+			 			right += 1
+			 			alert(right)
 			 			triviaGame.nextQuestion();
 			 		}
 			 		else{
-			 			alert("you lose")
+			 			
+			 			wrong += 1
+			 			alert(wrong)
 			 			triviaGame.nextQuestion();
 			 		}
 
@@ -90,13 +95,15 @@ var triviaGame = {
 	
 	},
 	nextQuestion: function(){
-
-		$("#timer").empty()
-		$("#displayPanel").empty()
-		slideNumber += 1
-		secondsLeft = 20
-		this.displayQuestion()
-		
+		if (slideNumber  < triviaGame.slides.length - 1){
+			$("#timer").empty()
+			$("#displayPanel").empty()
+			slideNumber += 1
+			secondsLeft = 20
+			this.displayQuestion()
+		}else{
+			alert("no more questions")
+		}
 	
 		
 		
