@@ -23,7 +23,7 @@ var triviaGame = {
 
 	},
 
-	slides : [["What's the closest planet to the sun?","earth", "moon", "jupiter","mercury", "mercury"],["What's your name?", "alvaro", "doug", "charlie", "sean", "alvaro"],["what's your favorit animal?", "cats","dogs", "birds", "fish","dogs"],["What's your favorite game", "tetris","Uno","checkers","poker","checkers"] ]
+	slides : [["What's the closest planet to the sun?","earth", "moon", "jupiter","mercury", "mercury"],["What is the name of the 2nd biggest planet in our solar system?", "earth", "pluto", "sun", "saturn", "saturn"],["what is the hottest planet in our solar system?", "venus","mercury", "mars", "sun","venus"],["What planet is famous for its big red spot on it?", "mars","milky way","jupiter","moon","jupiter"],["what planet is famous for its beautiful rings sorrounding it?","saturn","jupiter","mars","earth","saturn"] ]
 	,
 	currentChoices: []
 	,
@@ -93,6 +93,7 @@ var triviaGame = {
 			 		if ($(this).text() == answer){
 			 			
 			 			right += 1
+			 			$("#displayPanel").html("<div id='rightAnswer'>you are correct</div>")
 			 			
 			 			triviaGame.nextQuestion();
 			 		}
@@ -127,11 +128,11 @@ var triviaGame = {
 			secondsLeft = 20
 			this.displayQuestion();
 		}else{
-			
+			timer.stop();
 			$('#displayPanel').html("<div class='panel panel-default' id='gameOver'><div class='panel-body'>gameOver</div></div>");
 			$('#gameOver').append("<div id='wins'>" + 'correct answers : ' + right + "</div>");
 			$('#gameOver').append("<div id='loses'>" + 'wrong answers : ' + wrong + "</div>");
-			$('#gameOver').append("<button type='button' id='button2' class='btn btn-default' > <p>start</p></button>");
+			$('#gameOver').append("<button type='button' id='button2' class='btn btn-default' > <p>Try Again!</p></button>");
 			this.restartGame();
 
 		}
@@ -148,8 +149,9 @@ var triviaGame = {
 			secondsLeft -= 1
 
 		}else {
-			alert("time out")
-			triviaGame.nextQuestion
+			alert("time out");
+			wrong += 1
+			this.nextQuestion();
 		}
 
 		

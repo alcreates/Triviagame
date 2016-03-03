@@ -102,4 +102,24 @@ h1{
 	overflow: auto;
 
 }
+#button2 {
+	position: relative;
+	top:0px;
+	display: block;
+	left:-30px;
+	margin:auto;
+	font-family: Troika;
+	color:#cc5200;
+	width:150px;
+	height:75px;
+	font-size: 40px;
+	background-color: #ccc;
+}
+#gameOver{
+	font-family: Troika;
+	background-color: #ccc;
+	margin:auto;
+	text-align: center;
+	font-size:35px ;
+}
 
