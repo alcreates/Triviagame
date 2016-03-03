@@ -16,6 +16,7 @@ var triviaGame = {
 			right = 0
 			wrong = 0
 			secondsLeft = 20
+			
 			this.startButton();
 
 	},
@@ -38,6 +39,7 @@ var triviaGame = {
 
 		$("#button").click(function(){
 
+			
 			$('#button').remove();
 			triviaGame.display();
 			triviaGame.displayQuestion();
@@ -45,6 +47,27 @@ var triviaGame = {
 
 	
 		
+		});
+
+
+	},
+	restartGame: function(){
+
+		$("#button2").click(function(){
+
+			right = 0;
+			wrong = 0 ;
+ 			slideNumber = 0; 
+ 			secondsLeft = 20;
+ 			$("#button2").remove();
+ 			$('#displayPanel').remove();
+ 			$('#timer').remove();
+ 			triviaGame.display(); 
+ 			triviaGame.displayQuestion();
+
+
+
+
 		});
 
 
@@ -68,13 +91,13 @@ var triviaGame = {
 			 		if ($(this).text() == answer){
 			 			
 			 			right += 1
-			 			alert(right)
+			 			
 			 			triviaGame.nextQuestion();
 			 		}
 			 		else{
 			 			
 			 			wrong += 1
-			 			alert(wrong)
+			 			
 			 			triviaGame.nextQuestion();
 			 		}
 
@@ -96,13 +119,19 @@ var triviaGame = {
 	},
 	nextQuestion: function(){
 		if (slideNumber  < triviaGame.slides.length - 1){
-			$("#timer").empty()
-			$("#displayPanel").empty()
+			$("#timer").empty();
+			$("#displayPanel").empty();
 			slideNumber += 1
 			secondsLeft = 20
-			this.displayQuestion()
+			this.displayQuestion();
 		}else{
-			alert("no more questions")
+			
+			$('#displayPanel').html("<div class='panel panel-default' id='gameOver'><div class='panel-body'>gameOver</div></div>");
+			$('#gameOver').append("<div id='wins'>" + 'correct answers : ' + right + "</div>");
+			$('#gameOver').append("<div id='loses'>" + 'wrong answers : ' + wrong + "</div>");
+			$('#gameOver').append("<button type='button' id='button2' class='btn btn-default' > <p>start</p></button>");
+			this.restartGame();
+
 		}
 	
 		
