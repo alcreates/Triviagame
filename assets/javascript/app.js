@@ -6,6 +6,11 @@ var timer = $.timer(function(){
 	triviaGame.timerCount();
 });
 
+var winTimer = $.timer(function(){
+	triviaGame.nextQuestion();
+	winTimer.stop()
+});
+
 
 
 
@@ -23,7 +28,7 @@ var triviaGame = {
 
 	},
 
-	slides : [["What's the closest planet to the sun?","earth", "moon", "jupiter","mercury", "mercury"],["What is the name of the 2nd biggest planet in our solar system?", "earth", "pluto", "sun", "saturn", "saturn"],["what is the hottest planet in our solar system?", "venus","mercury", "mars", "sun","venus"],["What planet is famous for its big red spot on it?", "mars","milky way","jupiter","moon","jupiter"],["what planet is famous for its beautiful rings sorrounding it?","saturn","jupiter","mars","earth","saturn"] ]
+	slides : [["What's the closest planet to the sun?","earth", "moon", "jupiter","mercury", "mercury"],["What is the name of the 2nd biggest planet in our solar system?", "earth", "pluto", "sun", "saturn", "saturn"],["what is the hottest planet in our solar system?", "venus","mercury", "mars", "sun","venus"],["What planet is famous for its big red spot on it?", "mars","milky way","jupiter","moon","jupiter"],["what planet is famous for its beautiful rings sorrounding it?","saturn","jupiter","mars","earth","saturn"],["Who ws the first person to walk on the moon?", "lance armstrong","bill belhamy","john dourghety","neil armstrong","neil armstrong"],["what planet is known as the red planet?","the sun","the moon","mars","jupiter",'mars'],["what is the name of the force holding us to the earth?",'jedi force','g-force','gravity','i dont know','gravity' ],["Earth is located in which galaxy?", "the snickers", "the hershy","the milky way","I don't know","the milky way"],["What is the name of the first satelite sent into space?","the alvaro", "hubble space telescope","milky telescope","gergoscope","hubble space telescope"],["Ganymede is a moon of which planet?","earth","mars","jupiter","saturn","jupiter"],["What is the name of saturn's largest moon?",'titan','alvaro','heman','torus','titan'],["Olympus Mons is a large volcanic mountain on which planet?", "earth", "mars","jupiter","saturn","mars"] ]
 	,
 	currentChoices: []
 	,
@@ -93,24 +98,29 @@ var triviaGame = {
 			 		if ($(this).text() == answer){
 			 			
 			 			right += 1
-			 			$("#displayPanel").html("<div id='rightAnswer'>you are correct</div>")
+			 			$("#displayPanel").html("<div id='rightAnswer'>you are correct!</div>");
+			 			winTimer.set({time:1000, autostart: true});
 			 			
-			 			triviaGame.nextQuestion();
 			 		}
 			 		else{
 			 			
 			 			wrong += 1
 			 			
-			 			triviaGame.nextQuestion();
+			 			$("#displayPanel").html("<div id='wrongAnswer'>wrong... </div>");
+			 			winTimer.set({time:1000, autostart: true});
 			 		}
 
 			 		
 			 	});
 			 	$("#choice" + [i]).hover(function(){
 
-			 		$(this).fadeOut(100);
-			 		$(this).fadeIn(500);
-			 	});
+			 		$(this).css("font-family", "Troika");
+			 	},function(){
+			 		$(this).css("font-family", "Georgia, serif")
+
+			 	}
+			 	
+			 	);
 
 			 }
 		
@@ -121,6 +131,7 @@ var triviaGame = {
 	
 	},
 	nextQuestion: function(){
+		timer.play();
 		if (slideNumber  < triviaGame.slides.length - 1){
 			$("#timer").empty();
 			$("#displayPanel").empty();
